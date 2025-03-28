@@ -1,6 +1,6 @@
 # Devansh Kumar - Personal Portfolio
 
-![Portfolio Preview](assets/images/portfolio-preview.jpg) <!-- Add preview image if available -->
+![Portfolio Preview](https://github.com/Devaansh08/-Personal-Portfolio/blob/main/Screenshot%202025-03-28%20120329.png) <!-- Add preview image if available -->
 
 A modern, responsive personal portfolio website showcasing projects, skills, and professional information.
 
