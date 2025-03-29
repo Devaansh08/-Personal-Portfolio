@@ -1,6 +1,6 @@
 # Devansh Kumar - Personal Portfolio
 
-![Portfolio Preview](portfolio) <!-- Add preview image if available -->
+![Portfolio Preview](C:\Users\shiv7\Desktop\Devansh's Project\Portfolio) <!-- Add preview image if available -->
 
 A modern, responsive personal portfolio website showcasing projects, skills, and professional information.
 
