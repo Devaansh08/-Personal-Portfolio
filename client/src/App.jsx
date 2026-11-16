@@ -6,6 +6,7 @@ import About from './pages/About';
 import Resume from './pages/Resume';
 import Portfolio from './pages/Portfolio';
 import ResumeBuilder from './pages/ResumeBuilder';
+import TaskManager from './pages/TaskManager';
 import Contact from './pages/Contact';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/resume-builder" element={<ResumeBuilder />} />
+          <Route path="/task-manager" element={<TaskManager />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/about" replace />} />
         </Routes>
