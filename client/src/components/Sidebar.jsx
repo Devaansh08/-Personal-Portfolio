@@ -17,7 +17,7 @@ const defaultProfile = {
   },
 };
 
-export default function Sidebar() {
+export default function Sidebar({ onHireMe }) {
   const [isOpen, setIsOpen] = useState(false);
   const [profile, setProfile] = useState(defaultProfile);
 
@@ -181,6 +181,18 @@ export default function Sidebar() {
             </li>
           )}
         </ul>
+
+        <div className="separator"></div>
+
+        <button
+          type="button"
+          className="sidebar-hire-btn"
+          onClick={onHireMe}
+          title="Hire Devansh Kumar for your project"
+        >
+          <ion-icon name="rocket-outline"></ion-icon>
+          <span>Hire Me</span>
+        </button>
       </div>
     </aside>
   );

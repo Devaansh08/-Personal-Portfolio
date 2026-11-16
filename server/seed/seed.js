@@ -10,7 +10,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/devans
 
 const seedProfile = {
   name: 'Devansh Kumar',
-  title: 'Web developer',
+  title: 'Full-Stack MERN Developer & UI Designer',
   avatar: '/devansh-profile.jpg',
   email: 'devansh31k@gmail.com',
   phone: '+91 8887831905',
@@ -24,23 +24,28 @@ const seedProfile = {
     facebook: 'https://facebook.com/',
   },
   aboutParagraphs: [
-    "I'm a passionate and detail-oriented web developer embarking on my professional journey, I bring a fresh perspective, a hunger for learning, and a solid foundation in modern web technologies. I enjoy turning complex problems into simple, beautiful and intuitive designs.",
-    "My job is to build your website so that it is functional and user-friendly but at the same time attractive. Moreover, I add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way."
+    "I am a passionate Full-Stack MERN Developer and UI/UX Designer based in Lucknow, India, completing my B.Tech in Computer Science and Engineering at Ambalika Institute of Management & Technology (2021—2025). I specialize in engineering high-performance web applications using MongoDB, Express.js, React, Node.js, and Python, combining robust backend architectures with clean, intuitive user interfaces.",
+    "My focus centers on architecting production-ready solutions — from interactive productivity tools like Kanban boards to AI-driven applications like Resume Alchemist with real-time ATS heuristic evaluation. I adhere strictly to clean code practices, component-driven design systems, secure RESTful APIs, and cross-device responsiveness, ensuring every product is fast, accessible, and purpose-built for scale."
   ],
   services: [
     {
-      title: 'Web design',
-      description: 'The most modern and high-quality design made at a professional level.',
-      icon: '/icon-design.svg',
-    },
-    {
-      title: 'Web development',
-      description: 'High-quality development of sites at the professional level.',
+      title: 'Full-Stack Web Development',
+      description: 'Building end-to-end MERN applications with scalable Node.js/Express backends, MongoDB databases, and dynamic React frontends.',
       icon: '/icon-dev.svg',
     },
     {
-      title: 'Mobile apps',
-      description: 'Professional development of applications for iOS and Android.',
+      title: 'Frontend & UI/UX Engineering',
+      description: 'Crafting responsive, pixel-perfect user interfaces with React, modern CSS systems, micro-interactions, and accessible layouts.',
+      icon: '/icon-design.svg',
+    },
+    {
+      title: 'RESTful API & Database Architecture',
+      description: 'Designing performant REST APIs, data schemas with Mongoose, prepared queries, input validation, and cloud database integrations.',
+      icon: '/icon-dev.svg',
+    },
+    {
+      title: 'Python Scripting & Automation',
+      description: 'Developing data extraction scripts, algorithmic utilities, and backend automation pipelines engineered for efficiency.',
       icon: '/icon-app.svg',
     },
   ],
@@ -49,39 +54,46 @@ const seedProfile = {
       institution: 'Ambalika Institute of Management & Technology',
       period: '2021 — 2025',
       degree: 'B.Tech in Computer Science and Engineering',
-      details: 'Focused on core computer science subjects, data structures, algorithms, and full-stack software development.',
+      details: 'Comprehensive study of Data Structures, Algorithms, Database Management Systems (DBMS), Operating Systems, Software Engineering, and Full-Stack Web Technologies. Developed Resume Alchemist as flagship senior capstone application.',
     },
     {
       institution: 'ST. Xavier P I College',
       period: '2020 — 2021',
-      degree: 'Intermediate',
-      details: 'Physics, Chemistry, and Mathematics with distinction.',
+      degree: 'Intermediate (12th Grade)',
+      details: 'Focused on Physics, Chemistry, and Mathematics (PCM) with distinction, building strong analytical and problem-solving foundations.',
     },
     {
       institution: 'ST. Xavier P I College',
       period: '2018 — 2019',
-      degree: 'High School',
-      details: 'Science stream with 85% marks.',
+      degree: 'High School (10th Grade)',
+      details: 'Science & Mathematics curriculum completed with 85% aggregate score.',
     },
   ],
   experience: [
     {
-      title: 'Python Developer',
+      title: 'Full-Stack MERN Developer',
       period: '2024 — Present',
-      description: 'Working as a fresher Python developer in web development with good knowledge of front-end and back-end architectures.',
+      description: 'Architecting and developing full-stack web applications with React 19, Node.js, Express, and MongoDB. Engineered Resume Alchemist featuring real-time ATS scoring heuristic, live preview, and multi-template export. Built interactive Kanban Task Manager and modular REST APIs.',
     },
     {
-      title: 'Web designer',
+      title: 'Python Developer & Software Engineer',
       period: '2024 — Present',
-      description: 'Creating visually stunning, user-centric, and responsive web designs with modern CSS and frontend libraries.',
+      description: 'Developing backend services, automation scripts, and algorithmic data processing tools using Python. Focusing on clean code, REST integration, database operations, and system efficiency.',
+    },
+    {
+      title: 'Frontend UI/UX Designer',
+      period: '2023 — Present',
+      description: 'Designing intuitive, modern, responsive dark-mode web interfaces with smooth CSS animations, component-based architectures, and optimal cross-device performance.',
     },
   ],
   skills: [
-    { name: 'Web Development (MERN)', percentage: 85 },
-    { name: 'React.js', percentage: 75 },
-    { name: 'Graphic design / UI', percentage: 70 },
-    { name: 'Python', percentage: 65 },
-    { name: 'WordPress', percentage: 50 },
+    { name: 'MERN Stack (MongoDB, Express, React, Node.js)', percentage: 90 },
+    { name: 'React.js & Frontend Architecture', percentage: 88 },
+    { name: 'JavaScript (ES6+) & TypeScript', percentage: 85 },
+    { name: 'RESTful API Design & Node.js Backend', percentage: 85 },
+    { name: 'Python Programming & Scripting', percentage: 78 },
+    { name: 'Responsive Web Design & UI/UX (CSS3/Figma)', percentage: 88 },
+    { name: 'Git, GitHub & Cloud Deployment', percentage: 82 },
   ],
 };
 
