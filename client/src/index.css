@@ -2308,9 +2308,13 @@ textarea.form-input::-webkit-resizer {
 }
 
 @media (min-width: 1024px) {
-  /* Provide clear headroom and space away from top-right absolute navbar */
+  /* Provide clear headroom and space away from top-right absolute desktop navbar */
+  .resume-builder-header {
+    padding-top: 52px;
+  }
+
   .header-title-box {
-    max-width: calc(100% - 480px);
+    max-width: 100%;
     padding-bottom: 4px;
   }
 }
