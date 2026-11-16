@@ -2294,20 +2294,38 @@ textarea.form-input::-webkit-resizer {
   color: #e74c3c;
 }
 
-/* RESUME BUILDER SPECIFIC STYLES */
+/* RESUME BUILDER & PAGE HEADER STYLES (Navbar Collision Fix) */
 .resume-builder-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 25px;
+  position: relative;
+}
+
+.header-title-box {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  /* Provide clear headroom and space away from top-right absolute navbar */
+  .header-title-box {
+    max-width: calc(100% - 480px);
+    padding-bottom: 4px;
+  }
 }
 
 .resume-builder-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  article {
+    padding-bottom: 90px !important; /* Room for bottom floating navbar */
+  }
 }
 
 .resume-builder-container {

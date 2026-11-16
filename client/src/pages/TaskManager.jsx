@@ -119,9 +119,9 @@ export default function TaskManager() {
   return (
     <article className="task-manager active" data-page="task-manager">
       <header className="resume-builder-header">
-        <div>
-          <h2 className="h2 article-title">DevTask Manager</h2>
-          <p style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-6)', marginTop: '4px' }}>
+        <div className="header-title-box">
+          <h2 className="h2 article-title" style={{ margin: 0 }}>DevTask Manager</h2>
+          <p style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-6)', marginTop: '8px' }}>
             Interactive Agile Kanban workspace with instant priority sorting and state persistence.
           </p>
         </div>
@@ -141,6 +141,11 @@ export default function TaskManager() {
             type="button"
             className="btn-primary"
             onClick={() => setIsAdding((prev) => !prev)}
+            style={{
+              background: 'var(--orange-yellow-crayola)',
+              color: 'var(--eerie-black-1)',
+              fontWeight: '600',
+            }}
           >
             <ion-icon name={isAdding ? 'close-outline' : 'add-outline'}></ion-icon>
             <span>{isAdding ? 'Cancel' : 'New Task'}</span>

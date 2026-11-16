@@ -93,7 +93,7 @@ const seedProjects = [
     image: '/projects/resume-builder.jpg',
     description: 'Advanced full-stack AI resume builder featuring real-time ATS heuristic evaluation, split-screen live preview, multi-format export, professional templates, and MongoDB cloud synchronization.',
     techStack: ['React 19', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'ATS Scoring'],
-    liveUrl: '/resume-builder',
+    liveUrl: 'https://resume-alchemist.vercel.app/',
     githubUrl: 'https://github.com/Devaansh08/Resume-Alchemist',
     featured: true,
     order: 1,

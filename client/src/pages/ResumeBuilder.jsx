@@ -237,7 +237,7 @@ export default function ResumeBuilder() {
   return (
     <article className="resume-builder active" data-page="resume-builder">
       <header className="resume-builder-header">
-        <div>
+        <div className="header-title-box">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
             <h2 className="h2 article-title" style={{ margin: 0 }}>Resume Alchemist</h2>
             <span
@@ -254,12 +254,29 @@ export default function ResumeBuilder() {
               v2.0 Full-Stack Engine
             </span>
           </div>
-          <p style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-6)', marginTop: '6px' }}>
-            Powered by <strong>Resume Alchemist</strong> — real-time ATS optimization, split-screen live preview, and MongoDB cloud sync.
+          <p style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-6)', marginTop: '8px', lineHeight: '1.6' }}>
+            Powered by <strong>Resume Alchemist</strong> — real-time ATS optimization, split-screen live preview, and MongoDB cloud persistence.
           </p>
         </div>
 
+        {/* Action Toolbar - Sits below title with zero navbar overlap */}
         <div className="resume-builder-actions">
+          <a
+            href="https://resume-alchemist.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+            title="Open Resume Alchemist Live Deployed App"
+            style={{
+              background: 'var(--orange-yellow-crayola)',
+              color: 'var(--eerie-black-1)',
+              fontWeight: '600',
+            }}
+          >
+            <ion-icon name="open-outline"></ion-icon>
+            <span>Live App</span>
+          </a>
+
           <a
             href="https://github.com/Devaansh08/Resume-Alchemist"
             target="_blank"
@@ -268,7 +285,7 @@ export default function ResumeBuilder() {
             title="View Resume-Alchemist repository on GitHub"
           >
             <ion-icon name="logo-github"></ion-icon>
-            <span>GitHub Repo</span>
+            <span>GitHub</span>
           </a>
 
           <button
@@ -283,7 +300,7 @@ export default function ResumeBuilder() {
 
           <button
             type="button"
-            className="btn-primary"
+            className="btn-secondary"
             onClick={handleSaveToCloud}
             disabled={isSaving}
             title="Save to MongoDB"
@@ -294,13 +311,9 @@ export default function ResumeBuilder() {
 
           <button
             type="button"
-            className="btn-primary"
+            className="btn-secondary"
             onClick={handlePrint}
             title="Print or export as PDF"
-            style={{
-              background: 'var(--orange-yellow-crayola)',
-              color: 'var(--eerie-black-1)',
-            }}
           >
             <ion-icon name="print-outline"></ion-icon>
             <span>Print / PDF</span>
