@@ -1,89 +1,119 @@
-# Devansh Kumar - MERN Stack Personal Portfolio & Resume Builder
+# Devansh Kumar — Full-Stack MERN Personal Portfolio & Apps Showcase
 
-A modern, responsive, full-stack **MERN (MongoDB, Express.js, React, Node.js)** personal portfolio website with a built-in interactive **Resume Builder**, cloud-backed contact form, dynamic project portfolio, and responsive vCard dark glassmorphism design.
+[![Live Portfolio](https://img.shields.io/badge/Portfolio-Live_MERN_App-FFDB70?style=for-the-badge&logo=react&logoColor=black)](http://localhost:5173)
+[![Resume Alchemist](https://img.shields.io/badge/Resume_Alchemist-Live_on_Vercel-27C93F?style=for-the-badge&logo=vercel&logoColor=white)](https://resume-alchemist.vercel.app/)
+[![BidVault](https://img.shields.io/badge/BidVault-Live_Auctions-38BDF8?style=for-the-badge&logo=vercel&logoColor=white)](https://bidvault-luxury-auctions.vercel.app)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
+A production-grade, responsive, full-stack **MERN (MongoDB, Express.js, React, Node.js)** personal portfolio application designed with a dark glassmorphic vCard UI, built-in **Resume Alchemist** AI builder, an interactive **DevTask Kanban Board**, in-browser mini games and developer tools, smooth entrance animations, minimal footer, and a direct **Hire Me** channel with MongoDB contact persistence.
 
 ---
 
-## 🚀 Key Features
+## 🌟 Key Highlights & Features
 
-- **Full MERN Architecture**:
-  - **MongoDB**: Stores portfolio projects, developer profile, contact inquiries, and resumes.
-  - **Express.js & Node.js**: Robust REST API with validation, CORS, error handling, and SPA fallback.
-  - **React (Vite) & React Router**: Client-side routing with active tab transitions and zero page reloads.
-- **✨ Built-in Interactive Resume Builder**:
-  - Real-time two-way responsive resume preview document.
-  - Customizable sections: Personal Details, Education, Work Experience, Technical Skills, and Projects.
-  - One-click cloud save and load with MongoDB (`/api/resumes`).
-  - Native print and clean PDF export styling (`@media print`).
-  - "Sample Data" quick-fill button pre-loaded with Devansh's profile.
-- **Fixed & Working Routes**:
-  - `/about` — About Me, bio, and service capabilities (Web design, Web development, Mobile apps).
-  - `/resume` — Interactive education & experience timeline, animated skill proficiency bars.
-  - `/portfolio` — Filterable project showcase (All, Web design, Applications, Web development) with modal previews, live links, and GitHub links.
-  - `/resume-builder` — The interactive MERN Resume Builder.
-  - `/contact` — Functional contact form saving submissions to MongoDB, with live Google Maps embed of Lucknow, UP, India.
-- **Exact High-Fidelity UI**:
-  - Preserves the vCard aesthetic: dark theme, onyx gradients, vibrant yellow accents (`#FFDB70`), Poppins typography, and smooth transitions.
-  - Mobile-first responsive design with collapsible sidebar contacts and dropdown filter tabs.
+### 1. 🚀 Modern MERN Stack Architecture
+- **MongoDB**: Centralized cloud database storing projects catalog, developer profile, contact inquiries, and resume templates.
+- **Express.js & Node.js**: High-throughput REST API with prepared queries, server-side validation, CORS, error handling, and SPA routing fallback.
+- **React 19 & Vite**: Ultra-fast build times, zero redundant re-renders, and smooth client-side routing via React Router.
+
+### 2. ⚡ Entrance Intro Animation (`<DK/>`)
+- Main entrance intro overlay with an animated rotating glow ring around the `<DK/>` developer monogram.
+- Dynamic MERN stack initialization status milestones with animated progress bar and live percentage counter.
+- Quick "Skip Intro" option and smooth opacity/blur fade-out transition.
+
+### 3. 📄 Built-In Resume Alchemist Integration
+- Linked directly to the flagship live web application: **[Resume Alchemist](https://resume-alchemist.vercel.app/)**.
+- **Real-Time ATS Score Calculator**: Evaluates contact info, summary length, education, experience, and project keywords on a 100-point scale.
+- Split-screen live preview supporting multi-template layouts (Modern, Minimal, Executive).
+- One-click cloud save and load with MongoDB (`/api/resumes`).
+- Clean `@media print` stylesheet for browser-native A4 PDF export with zero noise.
+
+### 4. 🎮 In-Browser Mini Projects (100% Working Live Links)
+Every project card in the portfolio features a direct working in-browser application without dead GitHub links:
+- **Stone-Paper-Scissors AI Arena** (`/games/stone-paper-scissors/index.html`): Real-time interactive battle game against randomized AI with animated cards, score counters, and round feedback.
+- **Tic-Tac-Toe Pro Board** (`/games/tic-tac-toe/index.html`): 2-player grid duel with glowing marks, win-condition matrix calculations, tie detection, and round history.
+- **WebCode Sandbox** (`/games/code-playground/index.html`): Live in-browser HTML/CSS/JavaScript editor with split panes and real-time DOM sandbox rendering.
+- **SpeedTyper Benchmark** (`/games/speed-type/index.html`): Real-time typing speed test calculating Words Per Minute (WPM), accuracy %, and mistake highlights.
+- **DevCalc Glassmorphism** (`/games/calculator/index.html`): Dark-mode glassmorphic scientific calculator with keyboard typing support and history.
+- **ColorCraft Studio** (`/games/color-craft/index.html`): CSS gradient generator and harmonious palette designer with 1-click clipboard copy.
+
+### 5. 💼 "Hire Me" Modal & Direct Inquiry Channels
+- **Sidebar & Floating CTAs**: Gold-accented "Hire Me" button inside the sidebar plus a persistent floating action pill for quick access across all devices.
+- **Quick Connect Channels**: Direct one-click mailto (`devansh31k@gmail.com`) and pre-filled WhatsApp direct chat (`+91 8887831905`).
+- **MongoDB Inquiry Form**: Select project type (Full-Stack MERN, Frontend React, Python Services, etc.) and submit directly to `POST /api/contact` with toast alerts.
+
+### 6. 📱 Minimal Modern Footer & Smooth Scrolling
+- Global smooth scrolling enabled (`html { scroll-behavior: smooth; }`).
+- Live green pulsing availability badge: *"Available for New Projects & Full-Time Roles"*.
+- Smooth easing **Back to Top** button and quick navigation links.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend**: React 18, Vite, React Router 7, Axios, Ionicons, Poppins (Google Fonts)
-- **Backend**: Node.js, Express.js, Mongoose, CORS, Dotenv
-- **Database**: MongoDB (Local or Atlas)
-- **Tooling**: Concurrently (single-command full-stack development)
+| Domain | Technologies |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, React Router, Axios, Ionicons, CSS3 Variables, Glassmorphism |
+| **Backend** | Node.js, Express.js, Mongoose ORM, CORS, Dotenv |
+| **Database** | MongoDB (Local Service / Atlas Cloud) |
+| **Architecture** | RESTful APIs, Single-Page Application (SPA), Mobile-First Responsive Design |
+| **Live Deployments**| Vercel (`Resume Alchemist`, `BidVault`), GitHub Pages |
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
 personal-portfolio/
-├── client/                     # React Frontend (Vite)
-│   ├── public/                 # Static assets, images, and SVGs
-│   │   ├── devansh-profile.jpg
-│   │   ├── Netflix-Logo.jpg
-│   │   ├── Stone-paper-scissor.png
-│   │   ├── tic tac toe.jpg
-│   │   ├── icon-design.svg
-│   │   ├── icon-dev.svg
-│   │   └── icon-app.svg
+├── client/                     # React Frontend Application (Vite)
+│   ├── public/                 # Static assets, images, and in-browser games
+│   │   ├── devansh-profile.jpg # Profile photo with clean backdrop
+│   │   ├── games/              # In-browser mini applications
+│   │   │   ├── stone-paper-scissors/
+│   │   │   ├── tic-tac-toe/
+│   │   │   ├── code-playground/
+│   │   │   ├── speed-type/
+│   │   │   ├── calculator/
+│   │   │   └── color-craft/
+│   │   └── projects/           # Custom high-res project cover cards
 │   ├── src/
-│   │   ├── components/         # Reusable UI components
-│   │   │   ├── Sidebar.jsx     # Profile sidebar with collapsible contacts
-│   │   │   ├── Navbar.jsx      # Navigation links with active route states
-│   │   │   └── ProjectModal.jsx# Project preview modal dialog
-│   │   ├── pages/              # Routed pages
-│   │   │   ├── About.jsx       # About me & services
-│   │   │   ├── Resume.jsx      # Education, experience & skills
-│   │   │   ├── Portfolio.jsx   # Filterable projects grid
-│   │   │   ├── ResumeBuilder.jsx# Live interactive MERN Resume Builder
-│   │   │   └── Contact.jsx     # Cloud contact form & Google Map
-│   │   ├── App.jsx             # Root layout & route configuration
-│   │   ├── index.css           # Preserved & enhanced vCard stylesheet
-│   │   └── main.jsx            # React root with BrowserRouter
+│   │   ├── components/
+│   │   │   ├── Sidebar.jsx     # Profile sidebar with Hire Me CTA
+│   │   │   ├── Navbar.jsx      # Top/bottom desktop/mobile navigation bar
+│   │   │   ├── Footer.jsx      # Minimal footer with pulse dot & back-to-top
+│   │   │   ├── IntroLoader.jsx # Entrance animation with monogram & progress bar
+│   │   │   ├── HireMeModal.jsx # Direct inquiry modal (Email, WhatsApp, Contact)
+│   │   │   └── ProjectModal.jsx# Detailed project preview modal
+│   │   ├── pages/
+│   │   │   ├── About.jsx       # Bio, services, and engineering philosophy
+│   │   │   ├── Resume.jsx      # Timeline (AIMT, St. Xavier) and skill meters
+│   │   │   ├── Portfolio.jsx   # Filterable grid with direct Live Demo pills
+│   │   │   ├── ResumeBuilder.jsx# Live interactive ATS Resume Builder
+│   │   │   ├── TaskManager.jsx # Agile Kanban task management suite
+│   │   │   └── Contact.jsx     # Cloud contact form & Google Maps Lucknow
+│   │   ├── App.jsx             # Main router & global components
+│   │   ├── index.css           # Preserved dark vCard design system
+│   │   └── main.jsx
 │   ├── index.html
-│   ├── vite.config.js          # Vite config with API proxy
+│   ├── vite.config.js          # Vite configuration with `/api` proxy
 │   └── package.json
 │
-├── server/                     # Express.js REST API
+├── server/                     # Express.js REST API Backend
 │   ├── models/                 # Mongoose Data Models
-│   │   ├── Profile.js          # Profile & skills schema
-│   │   ├── Project.js          # Portfolio projects schema
-│   │   ├── Message.js          # Contact submissions schema
-│   │   └── ResumeData.js       # Cloud resume storage schema
+│   │   ├── Profile.js          # Bio, services, education, experience, skills
+│   │   ├── Project.js          # Portfolio project catalog schema
+│   │   ├── Message.js          # Inquiries and contact submissions
+│   │   └── ResumeData.js       # Cloud resume storage
 │   ├── routes/
 │   │   └── api.js              # REST endpoints for all resources
 │   ├── seed/
-│   │   └── seed.js             # Initial database seeder
-│   ├── .env.example            # Environment variables template
+│   │   └── seed.js             # Automated database seeder with real data
+│   ├── .env.example
 │   ├── server.js               # Express application entrypoint
 │   └── package.json
 │
-├── .gitignore
-├── package.json                # Root orchestration scripts
+├── package.json                # Root orchestration (concurrently dev scripts)
 └── README.md
 ```
 
@@ -92,18 +122,19 @@ personal-portfolio/
 ## ⚡ Getting Started
 
 ### 1. Prerequisites
-- **Node.js** (v18+)
-- **MongoDB** running locally on `mongodb://127.0.0.1:27017` or a MongoDB Atlas connection string.
+- **Node.js**: v18.0.0 or higher
+- **MongoDB**: Local MongoDB instance (`mongodb://127.0.0.1:27017`) or MongoDB Atlas URI.
 
 ### 2. Installation
-From the root directory, install all dependencies for both client and server:
+Clone the repository and install all dependencies:
 ```bash
+git clone https://github.com/Devaansh08/-Personal-Portfolio.git
+cd -Personal-Portfolio
 npm run install:all
 ```
-*(Or install in `client/` and `server/` individually with `npm install`)*
 
-### 3. Environment Configuration
-Verify or update `server/.env`:
+### 3. Environment Setup
+Configure your environment variables in `server/.env`:
 ```env
 PORT=5000
 MONGODB_URI=mongodb://127.0.0.1:27017/devansh_portfolio
@@ -111,14 +142,14 @@ CLIENT_URL=http://localhost:5173
 NODE_ENV=development
 ```
 
-### 4. Seed Database
-Populate MongoDB with Devansh's profile, projects (including the Resume Builder), and skills:
+### 4. Seed the Database
+Populate MongoDB with verified profile details, real projects, and resume templates:
 ```bash
 npm run seed
 ```
 
-### 5. Run the Application in Development Mode
-Launch both the backend server (port 5000) and frontend client (port 5173) with a single command:
+### 5. Launch Development Server
+Start both backend (Express on `:5000`) and frontend (Vite on `:5173`) concurrently:
 ```bash
 npm run dev
 ```
@@ -126,48 +157,49 @@ Open **[http://localhost:5173](http://localhost:5173)** in your browser.
 
 ---
 
-## 🚢 Production Deployment
+## 📡 REST API Documentation
 
-To build the client and serve everything from the Express server:
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Health check probe |
+| `GET` | `/api/profile` | Fetch developer profile, education, experience, and skills |
+| `PUT` | `/api/profile` | Update profile information |
+| `GET` | `/api/projects` | List projects (supports `?category=mini%20browser%20projects`) |
+| `GET` | `/api/projects/:id` | Get single project details |
+| `POST` | `/api/projects` | Add a new project |
+| `PUT` | `/api/projects/:id` | Update existing project |
+| `DELETE` | `/api/projects/:id` | Remove project |
+| `POST` | `/api/contact` | Submit contact / hire inquiry (persisted to MongoDB) |
+| `GET` | `/api/messages` | View inquiries log |
+| `GET` | `/api/resumes` | Fetch saved resumes |
+| `POST` | `/api/resumes` | Save a new resume document to MongoDB |
+| `PUT` | `/api/resumes/:id` | Update saved resume |
+
+---
+
+## 🚢 Production Build & Deployment
+
+To compile the React frontend for production:
 ```bash
 npm run build
 npm start
 ```
-The application will be served at **[http://localhost:5000](http://localhost:5000)** with client-side SPA routing support.
+The Express server will automatically serve the production-optimized client build from `client/dist` on port `5000`.
 
 ---
 
-## 📡 REST API Reference
+## 👨‍💻 Author
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/health` | Service health status check |
-| `GET` | `/api/profile` | Retrieve developer profile, about text, education, experience, skills |
-| `PUT` | `/api/profile` | Update profile information |
-| `GET` | `/api/projects` | List projects (optional query: `?category=applications`) |
-| `GET` | `/api/projects/:id` | Retrieve single project details |
-| `POST` | `/api/projects` | Add a new project |
-| `PUT` | `/api/projects/:id` | Update project details |
-| `DELETE` | `/api/projects/:id` | Remove a project |
-| `POST` | `/api/contact` | Submit contact form message (saved to MongoDB) |
-| `GET` | `/api/messages` | View received contact inquiries |
-| `GET` | `/api/resumes` | List saved resumes from Resume Builder |
-| `GET` | `/api/resumes/:id` | Retrieve single saved resume |
-| `POST` | `/api/resumes` | Save a new resume to MongoDB cloud |
-| `PUT` | `/api/resumes/:id` | Update an existing resume |
-
----
-
-## 💻 Included Projects
-
-1. **Resume Builder (MERN Stack)**: Interactive resume generator with real-time preview, multi-section form, MongoDB persistence, and PDF export.
-2. **Netflix Clone**: Cinematic media streaming user interface clone.
-3. **Stone-Paper-Scissor**: Responsive web game with animations, AI moves, and dynamic scorekeeping.
-4. **Tic Tac Toe**: Algorithmic two-player web game with win-condition detection and reset state.
-5. **Task Manager Pro**: Full-stack productivity dashboard with category filtering and priority management.
-6. **Fundo UI Design**: Modern UI/UX design exploration featuring glassmorphism and micro-interactions.
+**Devansh Kumar**
+- **Role**: Full-Stack MERN Developer & UI Designer
+- **Education**: B.Tech in Computer Science & Engineering (2021—2025), Ambalika Institute of Management & Technology, Lucknow, UP, India
+- **GitHub**: [@Devaansh08](https://github.com/Devaansh08)
+- **LinkedIn**: [Devansh Kumar](https://www.linkedin.com/in/devansh-kumar-8515a8220/)
+- **Email**: [devansh31k@gmail.com](mailto:devansh31k@gmail.com)
+- **Phone / WhatsApp**: [+91 8887831905](https://wa.me/918887831905)
 
 ---
 
 ## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
+
+This project is licensed under the [MIT License](LICENSE).
