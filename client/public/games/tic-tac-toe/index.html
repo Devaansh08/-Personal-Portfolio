@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe Pro | Devansh Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 50% 30%, #1e1e24 0%, #121214 70%, #0a0a0c 100%);
+      color: #fafafa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+    }
+    .top-bar {
+      width: 100%;
+      background: rgba(30, 30, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #383838;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffdb70;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn {
+      color: #fafafa;
+      text-decoration: none;
+      background: #2b2b2c;
+      border: 1px solid #383838;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+    .back-btn:hover {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .game-container {
+      max-width: 500px;
+      width: 92%;
+      margin-top: 30px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #a0a0a5;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .score-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .score-card {
+      background: #1e1e1f;
+      border: 1px solid #383838;
+      border-radius: 12px;
+      padding: 10px 18px;
+      min-width: 90px;
+    }
+    .score-card.active-turn {
+      border-color: #ffdb70;
+      box-shadow: 0 0 12px rgba(255, 219, 112, 0.25);
+    }
+    .score-card .title {
+      font-size: 12px;
+      color: #a0a0a5;
+      text-transform: uppercase;
+    }
+    .score-card .val {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .status-banner {
+      background: #1e1e1f;
+      border: 1px solid #383838;
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffdb70;
+    }
+    .status-banner.win {
+      background: rgba(39, 201, 63, 0.15);
+      border-color: #27c93f;
+      color: #27c93f;
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 360px;
+      margin: 0 auto 24px;
+    }
+    .cell {
+      aspect-ratio: 1;
+      background: #1e1e1f;
+      border: 2px solid #383838;
+      border-radius: 16px;
+      font-size: 42px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      color: #ffffff;
+      outline: none;
+    }
+    .cell:hover:not(:disabled) {
+      border-color: #ffdb70;
+      background: #2b2b2c;
+      transform: scale(1.03);
+    }
+    .cell.x-mark {
+      color: #ffdb70;
+      text-shadow: 0 0 10px rgba(255, 219, 112, 0.5);
+    }
+    .cell.o-mark {
+      color: #27c93f;
+      text-shadow: 0 0 10px rgba(39, 201, 63, 0.5);
+    }
+    .cell.winner-cell {
+      background: rgba(255, 219, 112, 0.2);
+      border-color: #ffdb70;
+      transform: scale(1.06);
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+    .btn {
+      background: #2b2b2c;
+      border: 1px solid #383838;
+      color: #fafafa;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn:hover {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .btn-primary {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .btn-primary:hover {
+      background: #ff9f43;
+      border-color: #ff9f43;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand-title">
+      <span>⭕</span>
+      <span>Devansh Kumar Portfolio • Mini Browser Project</span>
+    </div>
+    <a href="/portfolio" class="back-btn">← Back to Portfolio</a>
+  </div>
+
+  <div class="game-container">
+    <h1>Tic Tac Toe Pro</h1>
+    <p class="subtitle">Classic 2-player strategic duel in the browser</p>
+
+    <div class="score-row">
+      <div class="score-card" id="card-x">
+        <div class="title">Player (X)</div>
+        <div class="val" id="score-x">0</div>
+      </div>
+      <div class="score-card" id="card-ties">
+        <div class="title">Ties</div>
+        <div class="val" id="score-ties">0</div>
+      </div>
+      <div class="score-card" id="card-o">
+        <div class="title">Player (O)</div>
+        <div class="val" id="score-o">0</div>
+      </div>
+    </div>
+
+    <div class="status-banner" id="status-banner">
+      Current Turn: <span id="current-player" style="color: #ffdb70;">Player X</span>
+    </div>
+
+    <div class="board-grid">
+      <button class="cell" data-idx="0"></button>
+      <button class="cell" data-idx="1"></button>
+      <button class="cell" data-idx="2"></button>
+      <button class="cell" data-idx="3"></button>
+      <button class="cell" data-idx="4"></button>
+      <button class="cell" data-idx="5"></button>
+      <button class="cell" data-idx="6"></button>
+      <button class="cell" data-idx="7"></button>
+      <button class="cell" data-idx="8"></button>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="restart-round-btn">Restart Round</button>
+      <button type="button" class="btn" id="reset-all-btn">Reset All Scores</button>
+    </div>
+  </div>
+
+  <script>
+    const cells = document.querySelectorAll(".cell");
+    const statusBanner = document.getElementById("status-banner");
+    const currentPlayerDisplay = document.getElementById("current-player");
+    const scoreXDisplay = document.getElementById("score-x");
+    const scoreODisplay = document.getElementById("score-o");
+    const scoreTiesDisplay = document.getElementById("score-ties");
+    const cardX = document.getElementById("card-x");
+    const cardO = document.getElementById("card-o");
+    const restartBtn = document.getElementById("restart-round-btn");
+    const resetAllBtn = document.getElementById("reset-all-btn");
+
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "X";
+    let isGameOver = false;
+    let scores = { X: 0, O: 0, ties: 0 };
+
+    const winPatterns = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
+      [0, 4, 8], [2, 4, 6]             // diagonals
+    ];
+
+    function updateTurnDisplay() {
+      if (currentPlayer === "X") {
+        currentPlayerDisplay.innerText = "Player X";
+        currentPlayerDisplay.style.color = "#ffdb70";
+        cardX.classList.add("active-turn");
+        cardO.classList.remove("active-turn");
+      } else {
+        currentPlayerDisplay.innerText = "Player O";
+        currentPlayerDisplay.style.color = "#27c93f";
+        cardO.classList.add("active-turn");
+        cardX.classList.remove("active-turn");
+      }
+    }
+
+    function checkWin() {
+      for (const pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          return { winner: board[a], pattern };
+        }
+      }
+      if (!board.includes("")) {
+        return { winner: "tie" };
+      }
+      return null;
+    }
+
+    function handleCellClick(e) {
+      const idx = e.target.getAttribute("data-idx");
+      if (board[idx] !== "" || isGameOver) return;
+
+      board[idx] = currentPlayer;
+      e.target.innerText = currentPlayer;
+      e.target.classList.add(currentPlayer === "X" ? "x-mark" : "o-mark");
+      e.target.disabled = true;
+
+      const result = checkWin();
+      if (result) {
+        isGameOver = true;
+        if (result.winner === "tie") {
+          scores.ties++;
+          scoreTiesDisplay.innerText = scores.ties;
+          statusBanner.className = "status-banner";
+          statusBanner.innerText = "🤝 It's a Tie Round!";
+        } else {
+          scores[result.winner]++;
+          if (result.winner === "X") scoreXDisplay.innerText = scores.X;
+          else scoreODisplay.innerText = scores.O;
+
+          statusBanner.className = "status-banner win";
+          statusBanner.innerText = `🎉 Player ${result.winner} Wins The Round!`;
+
+          result.pattern.forEach(pIdx => {
+            cells[pIdx].classList.add("winner-cell");
+          });
+        }
+      } else {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+        updateTurnDisplay();
+      }
+    }
+
+    function restartRound() {
+      board = ["", "", "", "", "", "", "", "", ""];
+      isGameOver = false;
+      currentPlayer = "X";
+      cells.forEach(cell => {
+        cell.innerText = "";
+        cell.disabled = false;
+        cell.className = "cell";
+      });
+      statusBanner.className = "status-banner";
+      statusBanner.innerHTML = 'Current Turn: <span id="current-player" style="color: #ffdb70;">Player X</span>';
+      updateTurnDisplay();
+    }
+
+    function resetAll() {
+      scores = { X: 0, O: 0, ties: 0 };
+      scoreXDisplay.innerText = "0";
+      scoreODisplay.innerText = "0";
+      scoreTiesDisplay.innerText = "0";
+      restartRound();
+    }
+
+    cells.forEach(cell => cell.addEventListener("click", handleCellClick));
+    restartBtn.addEventListener("click", restartRound);
+    resetAllBtn.addEventListener("click", resetAll);
+
+    updateTurnDisplay();
+  </script>
+</body>
+</html>

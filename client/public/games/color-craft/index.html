@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorCraft Studio | Devansh Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 50% 30%, #1e1e24 0%, #121214 70%, #0a0a0c 100%);
+      color: #fafafa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+    }
+    .top-bar {
+      width: 100%;
+      background: rgba(30, 30, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #383838;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffdb70;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn {
+      color: #fafafa;
+      text-decoration: none;
+      background: #2b2b2c;
+      border: 1px solid #383838;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+    .back-btn:hover {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .container {
+      max-width: 700px;
+      width: 92%;
+      margin-top: 30px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      color: #a0a0a5;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .gradient-preview {
+      width: 100%;
+      height: 200px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      margin-bottom: 24px;
+      transition: background 0.3s ease;
+    }
+    .controls-card {
+      background: #1e1e1f;
+      border: 1px solid #383838;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .controls-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .color-picker-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="color"] {
+      -webkit-appearance: none;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: transparent;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: 2px solid #383838;
+      border-radius: 50%;
+    }
+    .css-output-box {
+      background: #141416;
+      border: 1px solid #383838;
+      border-radius: 12px;
+      padding: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 13.5px;
+      color: #ffdb70;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #ffdb70;
+      color: #121214;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover {
+      background: #ff9f43;
+    }
+    .random-btn {
+      background: #2b2b2c;
+      border: 1px solid #383838;
+      color: #fafafa;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 14px;
+      transition: all 0.2s;
+    }
+    .random-btn:hover {
+      border-color: #ffdb70;
+      color: #ffdb70;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand-title">
+      <span>🎨</span>
+      <span>Devansh Kumar Portfolio • Mini Browser Project</span>
+    </div>
+    <a href="/portfolio" class="back-btn">← Back to Portfolio</a>
+  </div>
+
+  <div class="container">
+    <h1>ColorCraft Studio</h1>
+    <p class="subtitle">CSS gradient generator & live palette designer in the browser</p>
+
+    <div class="gradient-preview" id="preview"></div>
+
+    <div class="controls-card">
+      <div class="controls-row">
+        <div class="color-picker-box">
+          <label>Color 1:</label>
+          <input type="color" id="color1" value="#ffdb70">
+        </div>
+        <div class="color-picker-box">
+          <label>Color 2:</label>
+          <input type="color" id="color2" value="#ff5f56">
+        </div>
+        <div class="color-picker-box">
+          <label>Angle:</label>
+          <input type="range" id="angle" min="0" max="360" value="135" style="width: 140px;">
+          <span id="angle-val">135°</span>
+        </div>
+      </div>
+
+      <div class="css-output-box">
+        <span id="css-text">background: linear-gradient(135deg, #ffdb70, #ff5f56);</span>
+        <button class="copy-btn" id="copy-btn">Copy CSS</button>
+      </div>
+    </div>
+
+    <button class="random-btn" id="random-btn">🎲 Generate Random Gradient</button>
+  </div>
+
+  <script>
+    const color1 = document.getElementById('color1');
+    const color2 = document.getElementById('color2');
+    const angle = document.getElementById('angle');
+    const angleVal = document.getElementById('angle-val');
+    const preview = document.getElementById('preview');
+    const cssText = document.getElementById('css-text');
+    const copyBtn = document.getElementById('copy-btn');
+    const randomBtn = document.getElementById('random-btn');
+
+    function updateGradient() {
+      const c1 = color1.value;
+      const c2 = color2.value;
+      const deg = angle.value;
+      angleVal.innerText = `${deg}°`;
+
+      const code = `background: linear-gradient(${deg}deg, ${c1}, ${c2});`;
+      preview.style.background = `linear-gradient(${deg}deg, ${c1}, ${c2})`;
+      cssText.innerText = code;
+    }
+
+    function getRandomColor() {
+      return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+    }
+
+    color1.addEventListener('input', updateGradient);
+    color2.addEventListener('input', updateGradient);
+    angle.addEventListener('input', updateGradient);
+
+    randomBtn.addEventListener('click', () => {
+      color1.value = getRandomColor();
+      color2.value = getRandomColor();
+      angle.value = Math.floor(Math.random() * 360);
+      updateGradient();
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(cssText.innerText).then(() => {
+        copyBtn.innerText = 'Copied! ✓';
+        setTimeout(() => copyBtn.innerText = 'Copy CSS', 2000);
+      });
+    });
+
+    updateGradient();
+  </script>
+</body>
+</html>

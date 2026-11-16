@@ -10,7 +10,7 @@ const projectSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, 'Category is required'],
-      enum: ['web design', 'applications', 'web development'],
+      enum: ['web design', 'applications', 'web development', 'mini browser projects'],
       lowercase: true,
       trim: true,
     },

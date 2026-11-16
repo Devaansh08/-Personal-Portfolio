@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone Paper Scissors AI Arena | Devansh Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 50% 30%, #1e1e24 0%, #121214 70%, #0a0a0c 100%);
+      color: #fafafa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+    }
+    .top-bar {
+      width: 100%;
+      background: rgba(30, 30, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #383838;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffdb70;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn {
+      color: #fafafa;
+      text-decoration: none;
+      background: #2b2b2c;
+      border: 1px solid #383838;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+    .back-btn:hover {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .game-container {
+      max-width: 680px;
+      width: 92%;
+      margin-top: 30px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #a0a0a5;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .score-board {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .score-card {
+      background: #1e1e1f;
+      border: 1px solid #383838;
+      border-radius: 16px;
+      padding: 16px 28px;
+      min-width: 130px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
+    .score-label {
+      font-size: 13px;
+      color: #a0a0a5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .score-val {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffdb70;
+      margin-top: 4px;
+    }
+    .choices {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .choice-card {
+      background: #1e1e1f;
+      border: 2px solid #383838;
+      border-radius: 20px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .choice-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      border-color: #ffdb70;
+      box-shadow: 0 12px 30px rgba(255, 219, 112, 0.25);
+    }
+    .choice-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #383838;
+      pointer-events: none;
+    }
+    .choice-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fafafa;
+      text-transform: capitalize;
+    }
+    .msg-box {
+      background: #1e1e1f;
+      border: 1px solid #383838;
+      border-radius: 14px;
+      padding: 16px 24px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .msg-box.win {
+      border-color: #27c93f;
+      background: rgba(39, 201, 63, 0.15);
+      color: #27c93f;
+    }
+    .msg-box.lose {
+      border-color: #ff5f56;
+      background: rgba(255, 95, 86, 0.15);
+      color: #ff5f56;
+    }
+    .msg-box.draw {
+      border-color: #ffdb70;
+      background: rgba(255, 219, 112, 0.12);
+      color: #ffdb70;
+    }
+    .reset-btn {
+      background: transparent;
+      border: 1px solid #383838;
+      color: #a0a0a5;
+      padding: 8px 24px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+    .reset-btn:hover {
+      border-color: #ffdb70;
+      color: #ffdb70;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand-title">
+      <span>⚡</span>
+      <span>Devansh Kumar Portfolio • Mini Browser Project</span>
+    </div>
+    <a href="/portfolio" class="back-btn">← Back to Portfolio</a>
+  </div>
+
+  <div class="game-container">
+    <h1>Stone Paper Scissors Arena</h1>
+    <p class="subtitle">Choose your move and battle the randomized computer AI</p>
+
+    <div class="score-board">
+      <div class="score-card">
+        <div class="score-label">You</div>
+        <div class="score-val" id="user-score">0</div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">Computer</div>
+        <div class="score-val" id="comp-score">0</div>
+      </div>
+    </div>
+
+    <div class="choices">
+      <div class="choice-card" id="rock" title="Choose Rock">
+        <img src="rock.png" alt="Rock" />
+        <span class="choice-name">Rock</span>
+      </div>
+      <div class="choice-card" id="paper" title="Choose Paper">
+        <img src="paper.png" alt="Paper" />
+        <span class="choice-name">Paper</span>
+      </div>
+      <div class="choice-card" id="scissors" title="Choose Scissors">
+        <img src="scissors.png" alt="Scissors" />
+        <span class="choice-name">Scissors</span>
+      </div>
+    </div>
+
+    <div class="msg-box" id="msg">
+      Pick Rock, Paper, or Scissors to begin!
+    </div>
+
+    <button type="button" class="reset-btn" id="reset-btn">Reset Score</button>
+  </div>
+
+  <script>
+    let userScore = 0;
+    let compScore = 0;
+
+    const choices = document.querySelectorAll(".choice-card");
+    const msg = document.querySelector("#msg");
+    const userScorePara = document.querySelector("#user-score");
+    const compScorePara = document.querySelector("#comp-score");
+    const resetBtn = document.querySelector("#reset-btn");
+
+    const genCompChoice = () => {
+      const options = ["rock", "paper", "scissors"];
+      const randIdx = Math.floor(Math.random() * 3);
+      return options[randIdx];
+    };
+
+    const drawGame = (choice) => {
+      msg.className = "msg-box draw";
+      msg.innerText = `It's a Draw! Both picked ${choice}.`;
+    };
+
+    const showWinner = (userWin, userChoice, compChoice) => {
+      if (userWin) {
+        userScore++;
+        userScorePara.innerText = userScore;
+        msg.className = "msg-box win";
+        msg.innerText = `🎉 You Win! Your ${userChoice} beats ${compChoice}!`;
+      } else {
+        compScore++;
+        compScorePara.innerText = compScore;
+        msg.className = "msg-box lose";
+        msg.innerText = `💥 You Lost! Computer's ${compChoice} beats your ${userChoice}.`;
+      }
+    };
+
+    const playGame = (userChoice) => {
+      const compChoice = genCompChoice();
+
+      if (userChoice === compChoice) {
+        drawGame(userChoice);
+      } else {
+        let userWin = true;
+        if (userChoice === "rock") {
+          userWin = compChoice === "paper" ? false : true;
+        } else if (userChoice === "paper") {
+          userWin = compChoice === "scissors" ? false : true;
+        } else {
+          userWin = compChoice === "rock" ? false : true;
+        }
+        showWinner(userWin, userChoice, compChoice);
+      }
+    };
+
+    choices.forEach((choice) => {
+      choice.addEventListener("click", () => {
+        const userChoice = choice.getAttribute("id");
+        playGame(userChoice);
+      });
+    });
+
+    resetBtn.addEventListener("click", () => {
+      userScore = 0;
+      compScore = 0;
+      userScorePara.innerText = "0";
+      compScorePara.innerText = "0";
+      msg.className = "msg-box";
+      msg.innerText = "Score reset! Pick a move to start a new match.";
+    });
+  </script>
+</body>
+</html>

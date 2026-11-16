@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProjectModal from '../components/ProjectModal';
 
-const categories = ['All', 'Web design', 'Applications', 'Web development'];
+const categories = ['All', 'Mini browser projects', 'Applications', 'Web development', 'Web design'];
 
 const fallbackProjects = [
   // 1. Applications
@@ -28,90 +29,93 @@ const fallbackProjects = [
     githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
     featured: true,
   },
-  {
-    _id: '3',
-    title: 'FitPulse - Workout & Health Tracker',
-    category: 'applications',
-    image: '/projects/fitpulse.jpg',
-    description: 'Mobile-first progressive web app for tracking daily workout routines, active calorie burn metrics, water hydration goals, and exercise streak analytics.',
-    techStack: ['React', 'PWA', 'Tailwind CSS', 'Mobile First', 'Analytics'],
-    liveUrl: 'https://github.com/Devaansh08',
-    githubUrl: 'https://github.com/Devaansh08',
-    featured: false,
-  },
 
   // 2. Web Development
   {
-    _id: '4',
-    title: 'ShopSphere - MERN E-Commerce',
+    _id: '3',
+    title: 'BidVault - Luxury Auction Platform',
     category: 'web development',
-    image: '/projects/shopsphere.jpg',
-    description: 'Full-stack modern e-commerce storefront with product search, category filtering, shopping cart drawer, simulated checkout flow, and REST API product inventory.',
-    techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'REST APIs'],
-    liveUrl: 'https://github.com/Devaansh08',
-    githubUrl: 'https://github.com/Devaansh08',
+    image: '/projects/bidvault.jpg',
+    description: 'Automated luxury auction web platform eliminating geographic barriers, featuring secure payment gateways, live bidding countdowns, and a responsive lightweight interface.',
+    techStack: ['React', 'Vercel', 'Tailwind CSS', 'Live Bidding', 'Payment Gateway'],
+    liveUrl: 'https://bidvault-luxury-auctions.vercel.app',
+    githubUrl: 'https://github.com/Devaansh08/bidvault-luxury-auctions',
+    featured: true,
+  },
+
+  // 3. Mini Browser Projects (Pure in-browser working interactive apps & games)
+  {
+    _id: '4',
+    title: 'Stone-Paper-Scissors AI Arena',
+    category: 'mini browser projects',
+    image: '/projects/sps-arena.jpg',
+    description: 'Fast-paced interactive browser game against intelligent randomized AI, featuring real-time round feedback, animated move choices, and dynamic score tracking.',
+    techStack: ['JavaScript', 'DOM API', 'CSS3 Keyframes', 'In-Browser Game'],
+    liveUrl: '/games/stone-paper-scissors/index.html',
+    githubUrl: 'https://github.com/Devaansh08/Stone-Paper-Scissor',
     featured: true,
   },
   {
     _id: '5',
-    title: 'Netflix Cinema UI Clone',
-    category: 'web development',
-    image: '/projects/netflix-cinema.jpg',
-    description: 'A responsive Netflix front-end clone featuring cinematic dark UI, movie trailer highlight banners, category browsing carousels, and responsive streaming media styling.',
-    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Responsive UI'],
-    liveUrl: 'https://devaansh08.github.io/Netflix-clone/',
-    githubUrl: 'https://github.com/Devaansh08/Netflix-clone',
-    featured: false,
-  },
-  {
-    _id: '6',
-    title: 'Stone-Paper-Scissors AI Arena',
-    category: 'web development',
-    image: '/projects/sps-arena.jpg',
-    description: 'Interactive browser battle game with custom animations, AI computer move generation, dynamic scoreboard tracking, and instant win/loss round feedback.',
-    techStack: ['JavaScript', 'DOM API', 'CSS3 Keyframes'],
-    liveUrl: 'https://devaansh08.github.io/Stone-Paper-Scissors/',
-    githubUrl: 'https://github.com/Devaansh08/Stone-Paper-Scissors',
-    featured: false,
-  },
-  {
-    _id: '7',
     title: 'Tic Tac Toe Pro Board',
-    category: 'web development',
+    category: 'mini browser projects',
     image: '/projects/tictactoe.jpg',
-    description: 'Classic 2-player Tic Tac Toe web game equipped with win-condition calculations, turn status tracking, round counter, and quick state reset.',
-    techStack: ['JavaScript', 'HTML5', 'CSS Grid'],
-    liveUrl: 'https://devaansh08.github.io/tic-tac-toe/',
-    githubUrl: 'https://github.com/Devaansh08/tic-tac-toe',
-    featured: false,
-  },
-
-  // 3. Web Design
-  {
-    _id: '8',
-    title: 'Fundo - UI/UX Design System',
-    category: 'web design',
-    image: '/projects/fundo-design.jpg',
-    description: 'Comprehensive UI/UX design system featuring dark glassmorphic cards, accessible color tokens, fluid typography scales, interactive component states, and Figma specs.',
-    techStack: ['Figma', 'UI/UX Design', 'Design Tokens', 'CSS3 Variables'],
-    liveUrl: 'https://github.com/Devaansh08',
-    githubUrl: 'https://github.com/Devaansh08',
+    description: 'Interactive 2-player grid strategy battle game with win-condition matrix calculations, active turn toggling, winner detection banner, and instant reset.',
+    techStack: ['JavaScript', 'HTML5', 'CSS Grid', 'In-Browser Game'],
+    liveUrl: '/games/tic-tac-toe/index.html',
+    githubUrl: 'https://github.com/Devaansh08/Tic-Tac-Toe-Game',
     featured: true,
   },
   {
+    _id: '6',
+    title: 'WebCode Sandbox (Mini Live IDE)',
+    category: 'mini browser projects',
+    image: '/projects/code-playground.jpg',
+    description: 'In-browser live HTML, CSS, and JavaScript editor with real-time DOM sandbox rendering, code templates, and instant live preview.',
+    techStack: ['JavaScript', 'DOM Sandbox', 'HTML5 iframe', 'Live IDE'],
+    liveUrl: '/games/code-playground/index.html',
+    githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
+    featured: true,
+  },
+  {
+    _id: '7',
+    title: 'SpeedTyper Benchmark',
+    category: 'mini browser projects',
+    image: '/projects/speed-type.jpg',
+    description: 'Interactive in-browser typing speed test calculating real-time Words Per Minute (WPM), accuracy percentage, mistake highlights, and 60-second countdown timer.',
+    techStack: ['JavaScript', 'Timer API', 'WPM Metrics', 'Speed Test'],
+    liveUrl: '/games/speed-type/index.html',
+    githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
+    featured: false,
+  },
+  {
+    _id: '8',
+    title: 'DevCalc Glassmorphism',
+    category: 'mini browser projects',
+    image: '/projects/calculator.jpg',
+    description: 'Sleek dark-mode glassmorphic web calculator supporting complex mathematical operations, keyboard input support, decimal calculations, and calculation history.',
+    techStack: ['JavaScript', 'CSS Glassmorphism', 'Keyboard Support', 'Math Engine'],
+    liveUrl: '/games/calculator/index.html',
+    githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
+    featured: false,
+  },
+
+  // 4. Web Design
+  {
     _id: '9',
-    title: 'Zenith Studio - Creative Agency',
+    title: 'ColorCraft Studio',
     category: 'web design',
-    image: '/projects/zenith-agency.jpg',
-    description: 'Modern digital agency web design exploration showcasing dark mode glassmorphism, responsive grid layouts, geometric typography, and interactive showcase reels.',
-    techStack: ['Figma', 'UI/UX Prototyping', 'CSS Grid', 'Typography'],
-    liveUrl: 'https://github.com/Devaansh08',
-    githubUrl: 'https://github.com/Devaansh08',
+    image: '/projects/color-craft.jpg',
+    description: 'Interactive web design tool for generating harmonious color palettes, linear gradients, and copying ready-to-use CSS rules with one click.',
+    techStack: ['JavaScript', 'CSS Variables', 'Clipboard API', 'Design Tools'],
+    liveUrl: '/games/color-craft/index.html',
+    githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
     featured: false,
   },
 ];
 
 export default function Portfolio() {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [projects, setProjects] = useState(fallbackProjects);
@@ -132,7 +136,13 @@ export default function Portfolio() {
 
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'All') return true;
-    return project.category.toLowerCase() === selectedCategory.toLowerCase();
+    const cat = (project.category || '').toLowerCase();
+    const sel = selectedCategory.toLowerCase();
+    if (cat === sel) return true;
+    if (sel === 'mini browser projects' && (cat.includes('browser') || project.liveUrl?.includes('/games/'))) {
+      return true;
+    }
+    return false;
   });
 
   return (
@@ -241,7 +251,41 @@ export default function Portfolio() {
                     )}
                   </h3>
 
-                  <p className="project-category">{project.category}</p>
+                  <div className="project-card-meta">
+                    <p className="project-category">{project.category}</p>
+
+                    {project.liveUrl && project.liveUrl !== '#' && (
+                      <a
+                        href={project.liveUrl}
+                        target={
+                          project.liveUrl.startsWith('/') &&
+                          !project.liveUrl.startsWith('/games/') &&
+                          !project.liveUrl.includes('.html')
+                            ? undefined
+                            : '_blank'
+                        }
+                        rel="noopener noreferrer"
+                        className="card-live-pill"
+                        onClick={(e) => {
+                          if (
+                            project.liveUrl.startsWith('/') &&
+                            !project.liveUrl.startsWith('/games/') &&
+                            !project.liveUrl.includes('.html')
+                          ) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            navigate(project.liveUrl);
+                          } else {
+                            e.stopPropagation();
+                          }
+                        }}
+                        title="Launch live project directly in browser"
+                      >
+                        <span className="live-pulse"></span>
+                        <span>Live Demo ↗</span>
+                      </a>
+                    )}
+                  </div>
 
                   {project.techStack && project.techStack.length > 0 && (
                     <div className="project-tag-list">

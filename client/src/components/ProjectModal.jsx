@@ -6,10 +6,10 @@ export default function ProjectModal({ project, onClose }) {
 
   if (!project) return null;
 
-  const isInternalLink = project.liveUrl && project.liveUrl.startsWith('/');
+  const isReactRoute = project.liveUrl && project.liveUrl.startsWith('/') && !project.liveUrl.startsWith('/games/') && !project.liveUrl.includes('.html');
 
   const handleLiveClick = (e) => {
-    if (isInternalLink) {
+    if (isReactRoute) {
       e.preventDefault();
       onClose();
       navigate(project.liveUrl);
@@ -80,12 +80,12 @@ export default function ProjectModal({ project, onClose }) {
             <a
               href={project.liveUrl}
               onClick={handleLiveClick}
-              target={isInternalLink ? undefined : '_blank'}
-              rel={isInternalLink ? undefined : 'noopener noreferrer'}
+              target={isReactRoute ? undefined : '_blank'}
+              rel={isReactRoute ? undefined : 'noopener noreferrer'}
               className="btn-primary"
             >
               <ion-icon name="open-outline"></ion-icon>
-              <span>{isInternalLink ? 'Launch Live App' : 'View Live Demo'}</span>
+              <span>{isReactRoute ? 'Launch In-App Tool' : 'View Live Demo'}</span>
             </a>
           )}
 

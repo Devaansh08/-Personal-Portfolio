@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevCalc Glassmorphism | Devansh Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 50% 30%, #1e1e24 0%, #121214 70%, #0a0a0c 100%);
+      color: #fafafa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+    }
+    .top-bar {
+      width: 100%;
+      background: rgba(30, 30, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #383838;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffdb70;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn {
+      color: #fafafa;
+      text-decoration: none;
+      background: #2b2b2c;
+      border: 1px solid #383838;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+    .back-btn:hover {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .calc-container {
+      max-width: 380px;
+      width: 92%;
+      margin-top: 36px;
+      background: rgba(30, 30, 32, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+    .display-screen {
+      background: #141416;
+      border: 1px solid #383838;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 20px;
+      text-align: right;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .history-text {
+      font-size: 13px;
+      color: #a0a0a5;
+      min-height: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .current-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .keys-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .calc-btn {
+      aspect-ratio: 1;
+      border-radius: 14px;
+      border: 1px solid #383838;
+      background: #252528;
+      color: #fafafa;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    .calc-btn:hover {
+      background: #333337;
+      transform: translateY(-2px);
+    }
+    .calc-btn.op-btn {
+      color: #ffdb70;
+      background: rgba(255, 219, 112, 0.1);
+      border-color: rgba(255, 219, 112, 0.3);
+    }
+    .calc-btn.op-btn:hover {
+      background: #ffdb70;
+      color: #121214;
+    }
+    .calc-btn.eq-btn {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+      grid-column: span 2;
+      aspect-ratio: auto;
+      height: 100%;
+    }
+    .calc-btn.eq-btn:hover {
+      background: #ff9f43;
+    }
+    .calc-btn.clear-btn {
+      color: #ff5f56;
+      background: rgba(255, 95, 86, 0.1);
+      border-color: rgba(255, 95, 86, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand-title">
+      <span>🔢</span>
+      <span>Devansh Kumar Portfolio • Mini Browser Project</span>
+    </div>
+    <a href="/portfolio" class="back-btn">← Back to Portfolio</a>
+  </div>
+
+  <div class="calc-container">
+    <div class="display-screen">
+      <div class="history-text" id="history"></div>
+      <div class="current-text" id="current">0</div>
+    </div>
+
+    <div class="keys-grid">
+      <button class="calc-btn clear-btn" data-action="clear">AC</button>
+      <button class="calc-btn op-btn" data-action="del">DEL</button>
+      <button class="calc-btn op-btn" data-action="%">%</button>
+      <button class="calc-btn op-btn" data-action="/">÷</button>
+
+      <button class="calc-btn" data-num="7">7</button>
+      <button class="calc-btn" data-num="8">8</button>
+      <button class="calc-btn" data-num="9">9</button>
+      <button class="calc-btn op-btn" data-action="*">×</button>
+
+      <button class="calc-btn" data-num="4">4</button>
+      <button class="calc-btn" data-num="5">5</button>
+      <button class="calc-btn" data-num="6">6</button>
+      <button class="calc-btn op-btn" data-action="-">−</button>
+
+      <button class="calc-btn" data-num="1">1</button>
+      <button class="calc-btn" data-num="2">2</button>
+      <button class="calc-btn" data-num="3">3</button>
+      <button class="calc-btn op-btn" data-action="+">+</button>
+
+      <button class="calc-btn" data-num="0">0</button>
+      <button class="calc-btn" data-num=".">.</button>
+      <button class="calc-btn eq-btn" data-action="=">=</button>
+    </div>
+  </div>
+
+  <script>
+    const historyEl = document.getElementById('history');
+    const currentEl = document.getElementById('current');
+    let currentInput = '0';
+    let previousInput = '';
+    let operation = null;
+    let shouldResetCurrent = false;
+
+    function updateDisplay() {
+      currentEl.innerText = currentInput;
+      if (operation) {
+        historyEl.innerText = `${previousInput} ${operation}`;
+      } else {
+        historyEl.innerText = '';
+      }
+    }
+
+    function appendNumber(num) {
+      if (num === '.' && currentInput.includes('.')) return;
+      if (currentInput === '0' && num !== '.') {
+        currentInput = num;
+      } else if (shouldResetCurrent) {
+        currentInput = num;
+        shouldResetCurrent = false;
+      } else {
+        currentInput += num;
+      }
+      updateDisplay();
+    }
+
+    function chooseOperation(op) {
+      if (currentInput === '') return;
+      if (previousInput !== '') {
+        compute();
+      }
+      operation = op;
+      previousInput = currentInput;
+      shouldResetCurrent = true;
+      updateDisplay();
+    }
+
+    function compute() {
+      let computation;
+      const prev = parseFloat(previousInput);
+      const curr = parseFloat(currentInput);
+      if (isNaN(prev) || isNaN(curr)) return;
+
+      switch (operation) {
+        case '+': computation = prev + curr; break;
+        case '-': computation = prev - curr; break;
+        case '*': computation = prev * curr; break;
+        case '/': computation = curr === 0 ? 'Error' : prev / curr; break;
+        case '%': computation = prev % curr; break;
+        default: return;
+      }
+
+      currentInput = computation.toString();
+      operation = null;
+      previousInput = '';
+      shouldResetCurrent = true;
+      updateDisplay();
+    }
+
+    document.querySelectorAll('[data-num]').forEach(btn => {
+      btn.addEventListener('click', () => appendNumber(btn.dataset.num));
+    });
+
+    document.querySelectorAll('[data-action]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        if (action === 'clear') {
+          currentInput = '0';
+          previousInput = '';
+          operation = null;
+          updateDisplay();
+        } else if (action === 'del') {
+          if (currentInput.length > 1) {
+            currentInput = currentInput.slice(0, -1);
+          } else {
+            currentInput = '0';
+          }
+          updateDisplay();
+        } else if (action === '=') {
+          compute();
+        } else {
+          chooseOperation(action);
+        }
+      });
+    });
+
+    // Keyboard support
+    window.addEventListener('keydown', (e) => {
+      if (e.key >= '0' && e.key <= '9' || e.key === '.') {
+        appendNumber(e.key);
+      } else if (['+', '-', '*', '/'].includes(e.key)) {
+        chooseOperation(e.key);
+      } else if (e.key === 'Enter' || e.key === '=') {
+        compute();
+      } else if (e.key === 'Backspace') {
+        if (currentInput.length > 1) currentInput = currentInput.slice(0, -1);
+        else currentInput = '0';
+        updateDisplay();
+      } else if (e.key === 'Escape') {
+        currentInput = '0';
+        previousInput = '';
+        operation = null;
+        updateDisplay();
+      }
+    });
+  </script>
+</body>
+</html>

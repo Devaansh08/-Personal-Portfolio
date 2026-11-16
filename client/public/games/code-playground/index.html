@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebCode Sandbox | Devansh Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #121214;
+      color: #fafafa;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .top-bar {
+      height: 54px;
+      background: #1e1e24;
+      border-bottom: 1px solid #383838;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffdb70;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #383838;
+      background: #2b2b2c;
+      color: #fafafa;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      border-color: #ffdb70;
+      color: #ffdb70;
+    }
+    .btn-run {
+      background: #ffdb70;
+      color: #121214;
+      border-color: #ffdb70;
+    }
+    .btn-run:hover {
+      background: #ff9f43;
+      border-color: #ff9f43;
+      color: #121214;
+    }
+    .main-workspace {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .editor-pane {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #383838;
+      background: #161619;
+    }
+    .tabs-bar {
+      display: flex;
+      background: #1a1a1e;
+      border-bottom: 1px solid #383838;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      background: transparent;
+      border: none;
+      color: #a0a0a5;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: #ffdb70;
+      border-bottom-color: #ffdb70;
+      background: rgba(255, 219, 112, 0.05);
+    }
+    .code-input {
+      flex: 1;
+      background: #121214;
+      color: #e2e8f0;
+      font-family: 'Fira Code', monospace;
+      font-size: 13.5px;
+      line-height: 1.6;
+      padding: 16px;
+      border: none;
+      outline: none;
+      resize: none;
+      tab-size: 2;
+    }
+    .preview-pane {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+    .preview-header {
+      height: 36px;
+      background: #1e1e24;
+      border-bottom: 1px solid #383838;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 12px;
+      color: #a0a0a5;
+    }
+    .preview-frame {
+      flex: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+    }
+    @media (max-width: 768px) {
+      .main-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      .editor-pane {
+        border-right: none;
+        border-bottom: 1px solid #383838;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand-title">
+      <span>💻</span>
+      <span>WebCode Sandbox • In-Browser Live IDE</span>
+    </div>
+    <div class="actions">
+      <button class="btn btn-run" id="run-btn">▶ Run Code</button>
+      <a href="/portfolio" class="btn">← Back to Portfolio</a>
+    </div>
+  </div>
+
+  <div class="main-workspace">
+    <div class="editor-pane">
+      <div class="tabs-bar">
+        <button class="tab-btn active" data-tab="html">HTML</button>
+        <button class="tab-btn" data-tab="css">CSS</button>
+        <button class="tab-btn" data-tab="js">JavaScript</button>
+      </div>
+
+      <textarea class="code-input" id="html-code" spellcheck="false">&lt;div class="card"&gt;
+  &lt;h2&gt;Hello from Devansh's Mini Sandbox! 🚀&lt;/h2&gt;
+  &lt;p&gt;Edit HTML, CSS, and JS on the left and hit &lt;strong&gt;Run Code&lt;/strong&gt; to test live in the browser.&lt;/p&gt;
+  &lt;button id="magic-btn"&gt;Click Me!&lt;/button&gt;
+&lt;/div&gt;</textarea>
+
+      <textarea class="code-input" id="css-code" spellcheck="false" style="display: none;">body {
+  margin: 0;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #121214 0%, #1e1e24 100%);
+  color: #fafafa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+.card {
+  background: rgba(40, 40, 42, 0.85);
+  border: 1px solid #ffdb70;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 450px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+h2 {
+  color: #ffdb70;
+  margin-top: 0;
+}
+p {
+  color: #a0a0a5;
+  line-height: 1.6;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #ffdb70;
+  color: #121214;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+button:hover {
+  transform: scale(1.05);
+}</textarea>
+
+      <textarea class="code-input" id="js-code" spellcheck="false" style="display: none;">const btn = document.getElementById('magic-btn');
+let count = 0;
+btn.addEventListener('click', () => {
+  count++;
+  btn.innerText = `Awesome! Clicked ${count} times ✨`;
+  document.body.style.background = count % 2 === 0 
+    ? 'linear-gradient(135deg, #121214, #1e1e24)' 
+    : 'linear-gradient(135deg, #09203f, #537895)';
+});</textarea>
+    </div>
+
+    <div class="preview-pane">
+      <div class="preview-header">
+        <span>Live Browser Output (DOM Sandbox)</span>
+      </div>
+      <iframe class="preview-frame" id="preview-frame" sandbox="allow-scripts allow-modals"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const htmlArea = document.getElementById('html-code');
+    const cssArea = document.getElementById('css-code');
+    const jsArea = document.getElementById('js-code');
+    const runBtn = document.getElementById('run-btn');
+    const preview = document.getElementById('preview-frame');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-tab');
+
+        htmlArea.style.display = target === 'html' ? 'block' : 'none';
+        cssArea.style.display = target === 'css' ? 'block' : 'none';
+        jsArea.style.display = target === 'js' ? 'block' : 'none';
+      });
+    });
+
+    function runSandbox() {
+      const html = htmlArea.value;
+      const css = cssArea.value;
+      const js = jsArea.value;
+
+      const fullSource = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <style>${css}<\/style>
+          </head>
+          <body>
+            ${html}
+            <script>${js}<\/script>
+          </body>
+        </html>
+      `;
+
+      preview.srcdoc = fullSource;
+    }
+
+    runBtn.addEventListener('click', runSandbox);
+    // Initial run
+    runSandbox();
+  </script>
+</body>
+</html>
