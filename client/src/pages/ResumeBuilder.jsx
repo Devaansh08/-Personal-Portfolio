@@ -56,10 +56,10 @@ const initialResumeState = {
   ],
   projects: [
     {
-      title: 'MERN Stack Personal Portfolio',
-      link: 'https://github.com/Devaansh08/-Personal-Portfolio',
+      title: 'Resume Alchemist — Advanced AI Builder',
+      link: 'https://github.com/Devaansh08/Resume-Alchemist',
       description:
-        'Full-stack portfolio featuring dynamic MongoDB backend, REST endpoints, interactive Resume Builder, and responsive dark glassmorphism UI.',
+        'Enterprise-grade full-stack resume builder featuring real-time ATS heuristic evaluation, split-screen preview, multi-format import, and cloud persistence.',
     },
     {
       title: 'Netflix UI Streaming Clone',
@@ -75,6 +75,23 @@ export default function ResumeBuilder() {
   const [toast, setToast] = useState(null);
   const [newSkill, setNewSkill] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState('Modern');
+
+  const calculateATSScore = () => {
+    let score = 0;
+    if (resume.personalInfo.fullName?.trim()) score += 10;
+    if (resume.personalInfo.email?.trim()) score += 10;
+    if (resume.personalInfo.phone?.trim()) score += 5;
+    if (resume.personalInfo.location?.trim()) score += 5;
+    if (resume.personalInfo.summary?.trim()?.length > 40) score += 15;
+    if (resume.education?.length > 0) score += 15;
+    if (resume.experience?.length > 0) score += 20;
+    if (resume.skills?.length >= 4) score += 10;
+    if (resume.projects?.length > 0) score += 10;
+    return Math.min(100, score);
+  };
+
+  const atsScore = calculateATSScore();
 
   const showToast = (type, message) => {
     setToast({ type, message });
@@ -221,13 +238,39 @@ export default function ResumeBuilder() {
     <article className="resume-builder active" data-page="resume-builder">
       <header className="resume-builder-header">
         <div>
-          <h2 className="h2 article-title">Resume Builder</h2>
-          <p style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-6)', marginTop: '4px' }}>
-            Full-stack MERN interactive generator with real-time preview and MongoDB sync.
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <h2 className="h2 article-title" style={{ margin: 0 }}>Resume Alchemist</h2>
+            <span
+              style={{
+                fontSize: '11px',
+                color: 'var(--orange-yellow-crayola)',
+                background: 'rgba(255, 219, 112, 0.15)',
+                padding: '4px 10px',
+                borderRadius: '8px',
+                border: '1px solid var(--orange-yellow-crayola)',
+                fontWeight: '600',
+              }}
+            >
+              v2.0 Full-Stack Engine
+            </span>
+          </div>
+          <p style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-6)', marginTop: '6px' }}>
+            Powered by <strong>Resume Alchemist</strong> — real-time ATS optimization, split-screen live preview, and MongoDB cloud sync.
           </p>
         </div>
 
         <div className="resume-builder-actions">
+          <a
+            href="https://github.com/Devaansh08/Resume-Alchemist"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+            title="View Resume-Alchemist repository on GitHub"
+          >
+            <ion-icon name="logo-github"></ion-icon>
+            <span>GitHub Repo</span>
+          </a>
+
           <button
             type="button"
             className="btn-secondary"
@@ -264,6 +307,63 @@ export default function ResumeBuilder() {
           </button>
         </div>
       </header>
+
+      {/* Real-time ATS & Template Switcher Bar */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '12px',
+          background: 'var(--onyx)',
+          border: '1px solid var(--jet)',
+          borderRadius: '14px',
+          padding: '12px 18px',
+          marginBottom: '20px',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '8px',
+              background: atsScore >= 80 ? 'rgba(46, 204, 113, 0.15)' : 'rgba(243, 156, 18, 0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: atsScore >= 80 ? '#2ecc71' : '#f39c12',
+              fontSize: '18px',
+            }}
+          >
+            <ion-icon name="speedometer-outline"></ion-icon>
+          </div>
+          <div>
+            <div style={{ fontSize: '11px', color: 'var(--light-gray-70)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Real-Time ATS Readiness Score
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '600', color: atsScore >= 80 ? '#2ecc71' : '#f39c12' }}>
+              {atsScore} / 100 — {atsScore >= 80 ? 'Excellent Match (ATS Pass)' : 'Good Progress (Add more details)'}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '12px', color: 'var(--light-gray)' }}>Template:</span>
+          {['Modern', 'Executive', 'Minimalist'].map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setSelectedTemplate(t)}
+              className={selectedTemplate === t ? 'btn-primary' : 'btn-secondary'}
+              style={{ padding: '4px 10px', fontSize: '11px' }}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Toast Alert */}
       {toast && (

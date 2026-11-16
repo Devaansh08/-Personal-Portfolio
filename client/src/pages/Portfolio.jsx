@@ -8,13 +8,13 @@ const fallbackProjects = [
   // 1. Applications
   {
     _id: '1',
-    title: 'Resume Builder (MERN Stack)',
+    title: 'Resume Alchemist (AI Resume Builder)',
     category: 'applications',
     image: '/projects/resume-builder.jpg',
-    description: 'A dynamic, full-stack Resume Builder built with the MERN stack. Features real-time live preview, modular sections (Education, Experience, Skills), MongoDB persistence, and instant one-click PDF printing.',
-    techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'CSS3 Print'],
+    description: 'Advanced full-stack AI resume builder featuring real-time ATS heuristic evaluation, split-screen live preview, multi-format export, professional templates, and MongoDB cloud synchronization.',
+    techStack: ['React 19', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'ATS Scoring'],
     liveUrl: '/resume-builder',
-    githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
+    githubUrl: 'https://github.com/Devaansh08/Resume-Alchemist',
     featured: true,
   },
   {

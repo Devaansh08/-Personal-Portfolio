@@ -88,13 +88,13 @@ const seedProfile = {
 const seedProjects = [
   // 1. Applications (App Development)
   {
-    title: 'Resume Builder (MERN Stack)',
+    title: 'Resume Alchemist (AI Resume Builder)',
     category: 'applications',
     image: '/projects/resume-builder.jpg',
-    description: 'A dynamic, full-stack Resume Builder built with the MERN stack. Features real-time responsive document preview, dynamic multi-section builder (Education, Experience, Skills), MongoDB cloud persistence, and instant PDF printing.',
-    techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'CSS3 Print'],
+    description: 'Advanced full-stack AI resume builder featuring real-time ATS heuristic evaluation, split-screen live preview, multi-format export, professional templates, and MongoDB cloud synchronization.',
+    techStack: ['React 19', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'ATS Scoring'],
     liveUrl: '/resume-builder',
-    githubUrl: 'https://github.com/Devaansh08/-Personal-Portfolio',
+    githubUrl: 'https://github.com/Devaansh08/Resume-Alchemist',
     featured: true,
     order: 1,
   },
