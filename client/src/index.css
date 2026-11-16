@@ -18,11 +18,101 @@
 :root {
 
     /**
-     * colors
+     * PISTA GREEN LIGHT BACKGROUND THEME (Default)
      */
   
     /* gradient */
   
+    --bg-gradient-onyx: linear-gradient(
+      to bottom right, 
+      #ffffff 0%, 
+      #f2f8f3 100%
+    );
+    --bg-gradient-jet: linear-gradient(
+      to bottom right, 
+      rgba(215, 237, 219, 0.45) 0%, 
+      rgba(235, 246, 238, 0.2) 100%
+    ), #f6fbf7;
+    --bg-gradient-yellow-1: linear-gradient(
+      to bottom right, 
+      #4caf50 0%, 
+      #2e7d32 100%
+    );
+    --bg-gradient-yellow-2: linear-gradient(
+      135deg, 
+      rgba(76, 175, 80, 0.25) 0%, 
+      rgba(46, 125, 50, 0.1) 60%
+    ), #f6fbf7;
+    --border-gradient-onyx: linear-gradient(
+      to bottom right, 
+      #b5ddbe 0%, 
+      #8ecb9a 50%
+    );
+    --text-gradient-yellow: linear-gradient(
+      to right, 
+      #2e7d32, 
+      #43a047
+    );
+  
+    /* solid colors */
+  
+    --jet: #d2e7d6;                 /* soft pista border */
+    --onyx: #ebf5ee;                /* pill/tag/card secondary bg */
+    --eerie-black-1: #ffffff;       /* main card & sidebar background */
+    --eerie-black-2: #f6fbf7;       /* inner panel background */
+    --smoky-black: #eaf4ec;         /* light pista page background */
+    --white-1: #142e18;             /* prominent headers & name */
+    --white-2: #1e3b23;             /* body text & primary labels */
+    --orange-yellow-crayola: #2e7d32; /* active pista green accent */
+    --vegas-gold: #43a047;
+    --light-gray: #3a5640;          /* subtitle / secondary text */
+    --light-gray-70: #58795e;       /* placeholder / muted text */
+    --bittersweet-shimmer: #d32f2f;
+  
+    /**
+     * typography
+     */
+  
+    /* font-family */
+    --ff-poppins: 'Poppins', sans-serif;
+  
+    /* font-size */
+    --fs-1: 24px;
+    --fs-2: 18px;
+    --fs-3: 17px;
+    --fs-4: 16px;
+    --fs-5: 15px;
+    --fs-6: 14px;
+    --fs-7: 13px;
+    --fs-8: 11px;
+  
+    /* font-weight */
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-500: 500;
+    --fw-600: 600;
+  
+    /**
+     * shadow
+     */
+    
+    --shadow-1: 0 4px 18px rgba(46, 125, 50, 0.08);
+    --shadow-2: 0 10px 25px rgba(46, 125, 50, 0.09);
+    --shadow-3: 0 16px 35px rgba(46, 125, 50, 0.11);
+    --shadow-4: 0 20px 40px rgba(46, 125, 50, 0.10);
+    --shadow-5: 0 24px 60px rgba(46, 125, 50, 0.14);
+  
+    /**
+     * transition
+     */
+  
+    --transition-1: 0.25s ease;
+    --transition-2: 0.5s ease-in-out;
+  
+  }
+  
+  [data-theme="dark"] {
+    /* Classic Dark Theme */
     --bg-gradient-onyx: linear-gradient(
       to bottom right, 
       hsl(240, 1%, 25%) 3%, 
@@ -54,8 +144,6 @@
       hsl(35, 100%, 68%)
     );
   
-    /* solid */
-  
     --jet: hsl(0, 0%, 22%);
     --onyx: hsl(240, 1%, 17%);
     --eerie-black-1: hsl(240, 2%, 13%);
@@ -69,46 +157,11 @@
     --light-gray-70: hsla(0, 0%, 84%, 0.7);
     --bittersweet-shimmer: hsl(0, 43%, 51%);
   
-    /**
-     * typography
-     */
-  
-    /* font-family */
-    --ff-poppins: 'Poppins', sans-serif;
-  
-    /* font-size */
-    --fs-1: 24px;
-    --fs-2: 18px;
-    --fs-3: 17px;
-    --fs-4: 16px;
-    --fs-5: 15px;
-    --fs-6: 14px;
-    --fs-7: 13px;
-    --fs-8: 11px;
-  
-    /* font-weight */
-    --fw-300: 300;
-    --fw-400: 400;
-    --fw-500: 500;
-    --fw-600: 600;
-  
-    /**
-     * shadow
-     */
-    
     --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
     --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
     --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
     --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
     --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
-  
-    /**
-     * transition
-     */
-  
-    --transition-1: 0.25s ease;
-    --transition-2: 0.5s ease-in-out;
-  
   }
   
   
@@ -2261,4 +2314,54 @@
     border-radius: 0;
     color: #000;
   }
+}
+
+
+/* Theme Toggle Button */
+.theme-toggle-item {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--onyx);
+  color: var(--orange-yellow-crayola);
+  border: 1px solid var(--jet);
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  cursor: pointer;
+  transition: var(--transition-1);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--orange-yellow-crayola);
+  color: #ffffff;
+  border-color: var(--orange-yellow-crayola);
+}
+
+.theme-toggle-btn ion-icon {
+  font-size: 16px;
+}
+
+/* Avatar Frame Refinements */
+.avatar-box {
+  background: var(--bg-gradient-onyx);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--jet);
+}
+
+.avatar-box img {
+  border-radius: 18px;
+  object-fit: cover;
+  object-position: top center;
+  aspect-ratio: 1 / 1;
+  display: block;
+  width: 100%;
 }
